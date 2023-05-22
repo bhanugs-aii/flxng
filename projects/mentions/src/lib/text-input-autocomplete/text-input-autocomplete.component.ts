@@ -9,7 +9,7 @@ import {
   Output,
   Renderer2,
   SimpleChanges,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 
 import { getCaretCoordinates } from './textarea-caret-position';
@@ -103,6 +103,7 @@ export class TextInputAutocompleteComponent implements OnChanges, OnInit, OnDest
   private _dumpedCwis: ChoiceWithIndices[] = [];
   private _editingCwi: ChoiceWithIndices;
 
+
   menuCtrl?: {
     template: TemplateRef<any>;
     context: any;
@@ -187,9 +188,8 @@ export class TextInputAutocompleteComponent implements OnChanges, OnInit, OnDest
       const cwiToEdit = this._selectedCwis.find((cwi) => {
         const label = this.getChoiceLabel(cwi.choice);
         const labelEndIndex = this.getChoiceIndex(label) + label.length;
-        return cursorPosition === labelEndIndex;
+        return cursorPosition <= labelEndIndex;
       });
-
       if (cwiToEdit) {
         this.editChoice(cwiToEdit.choice);
       }
@@ -298,7 +298,6 @@ export class TextInputAutocompleteComponent implements OnChanges, OnInit, OnDest
 
     const lineHeight = this.getLineHeight(this.textInputElement);
     const { top, left } = getCaretCoordinates(this.textInputElement, this.textInputElement.selectionStart);
-
     this.menuCtrl = {
       template: this.menuTemplate,
       context: {
@@ -339,11 +338,9 @@ export class TextInputAutocompleteComponent implements OnChanges, OnInit, OnDest
         end: startIndex + label.length,
       },
     };
-
     this.addToSelected(choiceWithIndices);
     this.updateIndices();
     this.selectedChoicesChange.emit(this._selectedCwis);
-
     this.hideMenu();
   };
 
@@ -351,7 +348,6 @@ export class TextInputAutocompleteComponent implements OnChanges, OnInit, OnDest
     const label = this.getChoiceLabel(choice);
     const startIndex = this.getChoiceIndex(label);
     const endIndex = startIndex + label.length;
-
     this._editingCwi = this._selectedCwis.find((cwi) => this.getChoiceLabel(cwi.choice) === label);
     this.removeFromSelected(this._editingCwi);
     this.selectedChoicesChange.emit(this._selectedCwis);
@@ -460,6 +456,9 @@ export class TextInputAutocompleteComponent implements OnChanges, OnInit, OnDest
       };
     });
   }
+
+
+  
 }
 
 export function getChoiceIndex(text: string, label: string, labels: string[]): number {

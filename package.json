@@ -16,6 +16,7 @@
   },
   "private": true,
   "dependencies": {
+    "@albert/mentions": "file:dist/mentions/albert-mentions-1.1.4.tgz",
     "@angular/animations": "~8.2.14",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",

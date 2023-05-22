@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { CommonModule as FlxngCommonModule } from '@flxng/common';
-import { MentionsModule as FlxngMentionsModule } from '@flxng/mentions';
+import { MentionsModule as FlxngMentionsModule } from '@albert/mentions';
 import { LoaderModule as FlxngLoaderModule } from '@flxng/loader';
 import { CodeShowModule as FlxngCodeShowModule } from '@flxng/code-show';
 

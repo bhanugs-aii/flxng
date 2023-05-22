@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { CommonModule as FlxngCommonModule } from '@flxng/common';
-import { MentionsModule as FlxngMentionsModule } from '@flxng/mentions';
+import { MentionsModule as FlxngMentionsModule } from '@albert/mentions';
 
 import { SharedModule } from '../shared/shared.module';
 import { GetStartedModule } from './get-started/get-started.module';

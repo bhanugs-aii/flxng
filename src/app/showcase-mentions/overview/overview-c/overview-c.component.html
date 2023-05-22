@@ -7,7 +7,7 @@
 
   <flx-mentions [textInputElement]="textareaRef"
                 [menuTemplate]="menuTemplate"
-                [triggerCharacter]="'#'"
+                [triggerCharacter]="'@'"
                 [closeMenuOnBlur]="false"
                 [getChoiceLabel]="getChoiceLabel"
                 [selectedChoices]="getSelectedChoices()"
@@ -25,14 +25,17 @@
 
   <ng-template #menuTemplate
                let-selectChoice="selectChoice">
-    <ul flxLoader
+    <ul #listTemplate flxLoader
         [flxLoaderVisible]="loading"
         class="flx-selectable-list"
-        [class.loader-only]="!choices.length && loading">
+        [class.loader-only]="!choices.length && loading" 
+        >
 
-      <li *ngFor="let user of choices"
+      <li *ngFor="let user of choices; let i = index"
           class="flx-selectable-list-item"
-          (click)="selectChoice(user)">
+          (click)="selectChoice(user)"
+          (mouseenter)="onMouseenter($event.target,i)"
+          (mouseleave)="onMouseleave($event.target, i)">
         <span title="{{user.name}}">{{user.name}}</span>
       </li>
     </ul>
